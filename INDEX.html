@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quince Años - Valeria Natalia Guerrero Rodríguez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Librería de animaciones al scroll (AOS) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 10px;
+      position: relative;
+      background-color: #0b1325;
+      overflow-x: hidden;
+    }
+
+    /* Fondo general fijo visible en toda la pantalla */
+    .bg-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('Fondo.jfif') center/cover no-repeat;
+      z-index: 0;
+    }
+
+    /* ANIMACIÓN DE MARIPOSAS FLOTANTES FIX */
+    .butterfly-float {
+      position: fixed;
+      bottom: -80px;
+      z-index: 9;
+      pointer-events: none;
+      animation: floatUp 10s linear infinite;
+      filter: drop-shadow(0 0 10px #38bdf8) drop-shadow(0 0 18px #0284c7);
+    }
+
+    .butterfly-float svg {
+      width: 100%;
+      height: 100%;
+      animation: flutter 1s ease-in-out infinite alternate;
+    }
+
+    /* Posiciones horizontales, tamaños y tiempos */
+    .bf-1 { left: 5%; width: 34px; height: 34px; animation-duration: 9s; animation-delay: 0s; }
+    .bf-2 { left: 22%; width: 26px; height: 26px; animation-duration: 12s; animation-delay: 2.5s; }
+    .bf-3 { left: 45%; width: 38px; height: 38px; animation-duration: 8.5s; animation-delay: 4.5s; }
+    .bf-4 { left: 68%; width: 28px; height: 28px; animation-duration: 11s; animation-delay: 1s; }
+    .bf-5 { left: 85%; width: 35px; height: 35px; animation-duration: 10s; animation-delay: 3s; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.95;
+      }
+      85% {
+        opacity: 0.95;
+      }
+      100% {
+        transform: translateY(-115vh) translateX(45px) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes flutter {
+      0% { transform: scaleX(1) scaleY(1); }
+      100% { transform: scaleX(0.25) scaleY(0.9); }
+    }
+
+    /* Contenedor principal estilo Tarjeta */
+    .card-container {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      background: url('Fondo.jfif') center/cover no-repeat;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      z-index: 2;
+    }
+
+    /* Capa de contenido traslúcida */
+    .card-overlay {
+      position: relative;
+      background: rgba(255, 255, 255, 0.45);
+      padding: 50px 24px 40px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 2;
+    }
+
+    /* Rótulo 15 Años (Fijo en pantalla) */
+    .img-15anos {
+      position: fixed;
+      top: 30px;
+      left: max(20px, calc(50vw - 220px));
+      width: 95px;
+      height: auto;
+      z-index: 10;
+      pointer-events: none;
+      filter: drop-shadow(0 0 10px #38bdf8) drop-shadow(0 0 20px #0284c7);
+    }
+
+    /* Princesa (Fija en pantalla) */
+    .img-princesa {
+      position: fixed;
+      bottom: 10px;
+      left: max(10px, calc(50vw - 230px));
+      width: 135px;
+      height: auto;
+      z-index: 10;
+      pointer-events: none;
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 24px rgba(255, 255, 255, 0.8));
+    }
+
+    @media (max-width: 500px) {
+      .img-15anos {
+        top: 25px;
+        left: 20px;
+        width: 85px;
+      }
+      .img-princesa {
+        bottom: 5px;
+        left: 10px;
+        width: 120px;
+      }
+    }
+
+    /* Textos principales */
+    .header-subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #0369a1;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 8px;
+    }
+
+    .title-name {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #0f172a;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9);
+    }
+
+    .dedicatoria {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #1e293b;
+      font-weight: 500;
+      line-height: 1.5;
+      max-width: 90%;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.75);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border-left: 4px solid #38bdf8;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    /* Contador */
+    .countdown-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #0284c7;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .countdown-grid {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .countdown-box {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 8px 12px;
+      min-width: 60px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .countdown-num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0284c7;
+    }
+
+    .countdown-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+
+    /* Bloques informativos */
+    .section-box {
+      background: rgba(255, 255, 255, 0.88);
+      width: 100%;
+      border-radius: 16px;
+      padding: 18px 14px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .section-desc {
+      font-size: 0.88rem;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .btn-action {
+      display: inline-block;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .btn-action:active {
+      transform: scale(0.96);
+    }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Pie de página comercial alineado a la derecha con Logo */
+    .business-footer {
+      width: 100%;
+      margin-top: 25px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(3, 105, 161, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      z-index: 3;
+    }
+
+    .footer-header-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .footer-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .footer-credit {
+      font-size: 0.68rem;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .footer-brand {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #0369a1;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-slogan {
+      font-size: 0.72rem;
+      color: #475569;
+      font-style: italic;
+    }
+
+    .social-icons-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .social-icon-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      border: 1px solid rgba(2, 132, 199, 0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+
+    .social-icon-btn:active {
+      transform: scale(0.9);
+    }
+
+    .social-icon-btn img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
+    /* Botón flotante de música */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #0284c7;
+      color: #fff;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      cursor: pointer;
+      z-index: 999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.4rem;
+    }
+
+    .music-btn.playing {
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+/* Información institucional del footer */
+.footer-legal {
+  width: 100%;
+  text-align: right;
+  margin-top: 0px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-legal p {
+  margin: 4px 0;
+  font-size: 11px;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+.footer-legal p:last-child {
+  font-size: 10px;
+  opacity: 0.6;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Capa del Fondo Visible Fijo -->
+  <div class="bg-fixed"></div>
+
+  <!-- MARIPOSAS FLOTANTES VISIBLES -->
+  <div class="butterfly-float bf-1">
+    <svg viewBox="0 0 64 64"><path d="M32 30C25 15 5 12 8 30C10 40 25 36 32 34C39 36 54 40 56 30C59 12 39 15 32 30Z" fill="#38bdf8"/><path d="M32 34C26 42 12 50 16 58C20 63 29 52 32 40C35 52 44 63 48 58C52 50 38 42 32 34Z" fill="#0284c7"/></svg>
+  </div>
+  <div class="butterfly-float bf-2">
+    <svg viewBox="0 0 64 64"><path d="M32 30C25 15 5 12 8 30C10 40 25 36 32 34C39 36 54 40 56 30C59 12 39 15 32 30Z" fill="#ffffff"/><path d="M32 34C26 42 12 50 16 58C20 63 29 52 32 40C35 52 44 63 48 58C52 50 38 42 32 34Z" fill="#bae6fd"/></svg>
+  </div>
+  <div class="butterfly-float bf-3">
+    <svg viewBox="0 0 64 64"><path d="M32 30C25 15 5 12 8 30C10 40 25 36 32 34C39 36 54 40 56 30C59 12 39 15 32 30Z" fill="#38bdf8"/><path d="M32 34C26 42 12 50 16 58C20 63 29 52 32 40C35 52 44 63 48 58C52 50 38 42 32 34Z" fill="#0284c7"/></svg>
+  </div>
+  <div class="butterfly-float bf-4">
+    <svg viewBox="0 0 64 64"><path d="M32 30C25 15 5 12 8 30C10 40 25 36 32 34C39 36 54 40 56 30C59 12 39 15 32 30Z" fill="#e0f2fe"/><path d="M32 34C26 42 12 50 16 58C20 63 29 52 32 40C35 52 44 63 48 58C52 50 38 42 32 34Z" fill="#38bdf8"/></svg>
+  </div>
+  <div class="butterfly-float bf-5">
+    <svg viewBox="0 0 64 64"><path d="M32 30C25 15 5 12 8 30C10 40 25 36 32 34C39 36 54 40 56 30C59 12 39 15 32 30Z" fill="#ffffff"/><path d="M32 34C26 42 12 50 16 58C20 63 29 52 32 40C35 52 44 63 48 58C52 50 38 42 32 34Z" fill="#7dd3fc"/></svg>
+  </div>
+
+  <!-- Elementos Fijos en Pantalla -->
+  <img src="15 años.PNG" alt="15 Años" class="img-15anos">
+  <img src="Princesa.PNG" alt="Princesa" class="img-princesa">
+
+  <!-- Audio nativo HTML5 -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=piano-moment-114476.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Botón flotante de música -->
+  <button class="music-btn" id="musicToggle" aria-label="Reproducir música">🎵</button>
+
+  <!-- Tarjeta Central Desplazable -->
+  <div class="card-container">
+    <div class="card-overlay">
+      
+      <!-- Encabezado con animación -->
+      <div data-aos="fade-up" data-aos-duration="1000">
+        <p class="header-subtitle">MIS XV AÑOS</p>
+        <h1 class="title-name">Valeria Natalia<br>Guerrero Rodríguez</h1>
+      </div>
+
+      <!-- Dedicatoria con animación -->
+      <p class="dedicatoria" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+        "Este día con la bendición de Dios, el amor de mis padres y demás familia mi sueño se hace realidad y quiero compartirlo con todas las personas que me quieren"
+      </p>
+
+      <!-- Contador con animación -->
+      <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <div class="countdown-title">FALTAN PARA EL GRAN DÍA</div>
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <div class="countdown-num" id="days">00</div>
+            <div class="countdown-label">Días</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="hours">00</div>
+            <div class="countdown-label">Hs</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="minutes">00</div>
+            <div class="countdown-label">Min</div>
+          </div>
+          <div class="countdown-box">
+            <div class="countdown-num" id="seconds">00</div>
+            <div class="countdown-label">Seg</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ceremonia Religiosa con animación -->
+      <div class="section-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+        <div class="section-title">⛪ CEREMONIA RELIGIOSA</div>
+        <div class="section-desc"><strong>Lugar:</strong> Catedral Nuestra Señora de los Pobres</div>
+        <div class="section-desc"><strong>Fecha:</strong> 27 de Diciembre de 2026</div>
+        <div class="section-desc"><strong>Hora:</strong> 04:30 PM</div>
+        <a href="https://maps.app.goo.gl/YnZEFix68WYvc34N7" target="_blank" rel="noopener" class="btn-action">Ver Ubicación</a>
+      </div>
+
+      <!-- Regalos con animación -->
+      <div class="section-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">
+        <div class="section-title">✉️ TIPO DE REGALO</div>
+        <div class="section-desc">Agradecemos tus muestras de cariño con Regalo de Sobre</div>
+      </div>
+
+      <!-- Confirmación WhatsApp con animación -->
+      <div class="section-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+        <div class="section-title">📲 CONFIRMACIÓN</div>
+        <div class="section-desc">Por favor confirma tu asistencia antes del 15 de diciembre</div>
+        <a href="https://wa.me/393453787392?text=¡Hola!%20Deseo%20confirmar%20mi%20asistencia%20a%20los%2015%20años%20de%20Valeria%20Natalia." target="_blank" rel="noopener" class="btn-action btn-whatsapp">Confirmar por WhatsApp</a>
+      </div>
+
+      <!-- Pie de página comercial con animación -->
+      <footer class="business-footer" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350">
+        <div class="footer-header-container">
+          <div class="footer-info">
+            <p class="footer-credit">Diseñada por</p>
+            <p class="footer-brand">Jonny´s - Diseño Digital</p>
+            <p class="footer-slogan">Diseño e Invitaciones Digitales</p>
+          </div>
+          <img src="Logo.png" alt="Jonny´s Logo" class="footer-logo">
+        </div>
+        
+        <div class="social-icons-right">
+          <a href="https://wa.me/50379072699" target="_blank" rel="noopener" class="social-icon-btn" title="WhatsApp">
+            <img src="ICONOS/whatsapp.png" alt="WhatsApp">
+          </a>
+          <a href="https://www.facebook.com/JonnysBaker/" target="_blank" rel="noopener" class="social-icon-btn" title="Facebook">
+            <img src="ICONOS/facebook.png" alt="Facebook">
+          </a>
+          <a href="https://www.tiktok.com/@jonnysbakery" target="_blank" rel="noopener" class="social-icon-btn" title="TikTok">
+            <img src="ICONOS/tik-tok.png" alt="TikTok">
+          </a>
+          <a href="https://maps.app.goo.gl/4HbXVHNpBDSitpnW9" target="_blank" rel="noopener" class="social-icon-btn" title="Google Maps">
+            <img src="ICONOS/maps.png" alt="Google Maps">
+          </a>
+          <a href="https://ul.waze.com/ul?from=place.w.177668231.1776878920.40683775&utm_campaign=live_map&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener" class="social-icon-btn" title="Waze">
+            <img src="ICONOS/waze.png" alt="Waze">
+          </a>
+        </div>
+  <!-- Información institucional de la marca -->
+  <div class="footer-legal">
+    <p>© <span id="footer-year"></span> Jonny´s Bakery. Todos los derechos reservados.</p>
+    <p>Jonny´s - Diseño Digital es una división de Jonny´s Bakery.</p>
+  </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- JS de la librería de animaciones (AOS) -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
+  <script>
+    // Inicializar las animaciones al scroll
+    AOS.init({
+      once: true
+    });
+
+    // Cuenta regresiva
+    const targetDate = new Date("2026-12-27T16:30:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+      } else {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+      }
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Control de audio
+    const audio = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicToggle');
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', function() {
+      if (!isPlaying) {
+        audio.play().then(() => {
+          isPlaying = true;
+          musicBtn.classList.add('playing');
+          musicBtn.innerHTML = '🎶';
+        }).catch(err => {
+          console.log("No se pudo iniciar la reproducción:", err);
+        });
+      } else {
+        audio.pause();
+        isPlaying = false;
+        musicBtn.classList.remove('playing');
+        musicBtn.innerHTML = '🎵';
+      }
+    });
+  </script>
+</body>
+</html>
